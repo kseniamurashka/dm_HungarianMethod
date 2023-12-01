@@ -1,6 +1,7 @@
 #include <iostream>
 #include "vector"
 #include "limits"
+#include "fstream"
 
 using namespace std;
 
@@ -10,7 +11,7 @@ vector<int> xy, yx;             // Паросочетания: xy[разраб],
 vector<bool> vertexX, vertexY;            // Альтернирующее дерево vx[разраб], vy[задача]
 vector<int> skill, understanding;     // Способности, изученность
 
-bool dotry (int i) {
+bool findMaxMatching (int i) {
     if (vertexX[i]) {
         return false;
     }
@@ -22,14 +23,14 @@ bool dotry (int i) {
         }
     }
     for (int j = 0; j < n; ++j) {
-        if (M[i][j] - skill[i] - understanding[j] == 0 && yx[j] == -1) {
+        if (M[i][j] - (skill[i] + understanding[j]) == 0 && yx[j] == -1) {
             xy[i] = j;
             yx[j] = i;
             return true;
         }
     }
     for (int j = 0; j < n; ++j) {
-        if (M[i][j] - skill[i] - understanding[j] == 0 && dotry(yx[j])) {
+        if (M[i][j] - skill[i] - understanding[j] == 0 && findMaxMatching(yx[j])) {
             xy[i] = j;
             yx[j] = i;
             return true;
@@ -62,7 +63,7 @@ int main() {
         vertexY.assign (n, false);
         int k = 0;
         for (int i = 0; i < n; ++i)
-            if (xy[i] == -1 && dotry(i)) ++k;
+            if (xy[i] == -1 && findMaxMatching(i)) ++k;
         c += k;
         if (k == 0) {
             int z = numeric_limits<int>::max();
@@ -85,8 +86,11 @@ int main() {
     for (int i = 0; i < n; ++i) {
         ans += M[i][xy[i]];
     }
+    ofstream fout("Result");
+    fout << "The maximum result is " << ans << endl;
     cout << "The maximum result is " << ans << endl;
     for (int i = 0; i < n; ++i) {
+        fout << "Task for worker " << i << " has id = " << xy[i] + 1 << endl;
         cout << "Task for worker " << i << " has id = " << xy[i] + 1 << endl;
     }
 }
