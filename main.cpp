@@ -2,14 +2,26 @@
 #include "vector"
 #include "limits"
 #include "fstream"
+#include "string"
 
 using namespace std;
+
 
 int n;
 vector <vector<int>> M;      // Матрица эффективности M[разраб][задача]
 vector<int> xy, yx;             // Паросочетания: xy[разраб], yx[задача]
 vector<bool> vertexX, vertexY;            // Альтернирующее дерево vx[разраб], vy[задача]
-vector<int> skill, understanding;     // Способности, изученность
+vector<int> skill, understanding;// Способности, изученность
+
+vector<string> worker;
+vector<string> tasking;
+
+void add_info() {
+    ifstream inf("Worker_and_task");
+    if (!inf) {
+        cout<<"!!!";
+    }
+}
 
 bool findMaxMatching (int i) {
     if (vertexX[i]) {
@@ -45,6 +57,8 @@ int main() {
          {3, 4, 5},
          {4, 5, 6}};
     n = 3;
+
+    add_info();
 
     understanding.assign(n, 0);
     skill.assign(n, 0);
@@ -94,4 +108,3 @@ int main() {
         cout << "Task for worker " << i << " has id = " << xy[i] + 1 << endl;
     }
 }
-
