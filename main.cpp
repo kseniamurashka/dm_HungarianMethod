@@ -56,7 +56,7 @@ int main() {
     }
     xy.assign (n, -1);
     yx.assign (n, -1);
-    //
+
 
     for (int c = 0; c < n; ) {
         vertexX.assign (n, false);
