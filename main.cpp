@@ -28,7 +28,6 @@ void add_info() {
     M.resize(n);
     for (int i = 0; i < 3; ++i) {
         string worker_name;
-        string value;
         inf>>worker_name;
         worker.push_back(worker_name);
         M[i].resize(n);
@@ -70,11 +69,6 @@ bool findMaxMatching (int i) {
 
 int main() {
     //initialisation
-    /*M = {{2, 3, 4},
-         {3, 4, 5},
-         {4, 5, 6}};
-    n = 3;*/
-
     add_info();
 
     understanding.assign(n, 0);
@@ -118,12 +112,6 @@ int main() {
         ans += M[i][xy[i]];
     }
     ofstream fout("Result");
-    fout << "The maximum result is " << ans << endl;
-    cout << "The maximum result is " << ans << endl;
-    for (int i = 0; i < n; ++i) {
-        fout << "Task for worker " << i << " has id = " << xy[i] + 1 << endl;
-        cout << "Task for worker " << i << " has id = " << xy[i] + 1 << endl;
-    }
 
     for (int i = 0; i < n; ++i) {
         fout<< "Task for worker "<<worker[i]<<" "<<tasking[xy[i]]<<"\n";
