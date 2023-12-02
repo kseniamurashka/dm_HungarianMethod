@@ -33,6 +33,7 @@ void add_info() {
         M[i].resize(n);
         for (int j = 0; j < n; ++j) {
             inf>>M[i][j];
+            std::cout<<M[i][j]<<" ";
         }
     }
 }
