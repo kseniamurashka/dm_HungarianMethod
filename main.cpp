@@ -26,14 +26,13 @@ void add_info() {
     }
 
     M.resize(n);
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < n; ++i) {
         string worker_name;
         inf>>worker_name;
         worker.push_back(worker_name);
         M[i].resize(n);
         for (int j = 0; j < n; ++j) {
             inf>>M[i][j];
-            std::cout<<M[i][j]<<" ";
         }
     }
 }
