@@ -18,10 +18,27 @@ vector<string> tasking;
 
 void add_info() {
     ifstream inf("Worker_and_task");
-    if (!inf) {
-        cout<<"!!!";
+    inf>>n;
+    for (int i = 0; i < n; ++i) {
+        string str;
+        inf>>str;
+        tasking.push_back(str);
+    }
+
+    M.resize(n);
+    for (int i = 0; i < 3; ++i) {
+        string worker_name;
+        string value;
+        inf>>worker_name;
+        worker.push_back(worker_name);
+        M[i].resize(n);
+        for (int j = 0; j < n; ++j) {
+            inf>>M[i][j];
+        }
     }
 }
+
+
 
 bool findMaxMatching (int i) {
     if (vertexX[i]) {
@@ -53,10 +70,10 @@ bool findMaxMatching (int i) {
 
 int main() {
     //initialisation
-    M = {{2, 3, 4},
+    /*M = {{2, 3, 4},
          {3, 4, 5},
          {4, 5, 6}};
-    n = 3;
+    n = 3;*/
 
     add_info();
 
@@ -107,4 +124,10 @@ int main() {
         fout << "Task for worker " << i << " has id = " << xy[i] + 1 << endl;
         cout << "Task for worker " << i << " has id = " << xy[i] + 1 << endl;
     }
+
+    for (int i = 0; i < n; ++i) {
+        fout<< "Task for worker "<<worker[i]<<" "<<tasking[xy[i]]<<"\n";
+        cout<<"Task for worker "<<worker[i]<<" "<<tasking[xy[i]]<<"\n";
+    }
+
 }
