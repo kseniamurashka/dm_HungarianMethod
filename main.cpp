@@ -13,8 +13,9 @@ vector<int> xy, yx;             // Паросочетания: xy[разраб],
 vector<bool> vertexX, vertexY;            // Альтернирующее дерево vx[разраб], vy[задача]
 vector<int> skill, understanding;// Способности, изученность
 
-vector<string> worker;
-vector<string> tasking;
+vector<string> worker; //имена сотрудников
+vector<string> tasking;//задачи
+
 
 void add_info() {
     ifstream inf("Worker_and_task");
@@ -68,7 +69,6 @@ bool findMaxMatching (int i) {
 }
 
 int main() {
-    //initialisation
     add_info();
 
     understanding.assign(n, 0);
